@@ -1,11 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 // 将非路由组件传入到withRouter高阶组件以获得{ match, location, history }等对象属性
-import Dashboard from './Dashboard';
+import BasicLayout from './BasicLayout';
 import {getRouterData} from '../../router/router.jsx';
 import data from '../../data';
 
-class BasicLayout extends React.Component {
+class BasicLayoutPage extends React.Component {
 	render() {
 		// // console.log('BasicLayout', this.props);
 		const routerData = getRouterData();
@@ -17,7 +17,7 @@ class BasicLayout extends React.Component {
 			userid: '00000001ß'
     }
 		return (
-  <Dashboard
+  <BasicLayout
     {...this.props}
     collapsed={false}
     routerData={routerData}
@@ -27,4 +27,4 @@ class BasicLayout extends React.Component {
 		);
 	}
 }
-export default withRouter(BasicLayout);
+export default withRouter(BasicLayoutPage);

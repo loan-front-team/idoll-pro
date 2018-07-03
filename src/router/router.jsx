@@ -4,9 +4,9 @@
  * @Last Modified by: mikey.zhaopeng
  * @Last Modified time: 2018-05-10 17:48:14
 */
-import { getMenuData } from 'container/dashboard/getMenuData';
+import { getMenuData } from 'container/basic-layout/getMenuData';
 import React from 'react';
-import Dashboard from 'container/dashboard';
+import Dashboard from 'container/basic-layout';
 
 function getFlatMenuData(menus) {
 	let keys = {};

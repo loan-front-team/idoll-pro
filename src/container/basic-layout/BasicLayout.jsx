@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 
 
@@ -8,8 +8,6 @@ import Layout from 'components/layout';
 
 import SiderMenu from 'component/sider-menu';
 import GlobalHeader from 'component/global-header';
-import ChildContent from 'container/Content';
-import User from 'container/user';
 
 import data from '../../data';
 import logo from 'assets/images/logo.png';
@@ -32,11 +30,7 @@ const menus = getMenuData();
 // console.log('menus', menus);
 menus.forEach(getRedirect);
 
-const Task = () => (<ChildContent title='Task' />)
-// const User = () => (<ChildContent title='User' />)
-const NotFound = () => (<Content title='404' text='抱歉，你访问的页面不存在' />)
-
-export default class Dashboard extends React.Component {
+export default class BasicLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -116,10 +110,7 @@ export default class Dashboard extends React.Component {
           </Header>
           <Content className={styles.content}>
             <Switch>
-              <Route exact path='/dashboard' component={User} />
-              <Route path='/dashboard/task-list' component={Task} />
-              <Route path='/dashboard/user' component={User} />
-              <Route component={NotFound} />
+              {this.props.children}
             </Switch>
           </Content>
         </Layout>
