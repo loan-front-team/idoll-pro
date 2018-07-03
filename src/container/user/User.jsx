@@ -26,7 +26,7 @@ export default class User extends React.Component {
   }
 	render() {
     const data = this.state.data;
-    // console.log('data', data)
+    console.log('data', data)
     const tabList = [{
       key: 'account',
       tab: '账号信息',

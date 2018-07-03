@@ -8,7 +8,7 @@
 
 const data = {
 	common: {
-		systemName: 'Dbox Pro',
+		systemName: 'Idoll Pro',
 	},
 	gfooter: {
 		links: [{
@@ -17,19 +17,19 @@ const data = {
 	        href: '#',
 	        blankTarget: true,
 	      }, {
-	        key: 'gitlab',
+	        key: 'github',
 	        title: '',
 	        href: '#',
 	        blankTarget: true,
 	      }, {
-	        key: 'DBOX',
-	        title: 'DBOX',
+	        key: 'idoll',
+	        title: 'idoll',
 	        href: '#',
 	        blankTarget: true,
 	      }],
 		copyright: {
 			key: 'copyright',
-			title: '2018 DBox UI 前端协会出品'
+			title: '2018 idoll'
 		}
 	}
 }

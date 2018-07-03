@@ -2,7 +2,7 @@ const opn = require('opn');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.dev.js');
-const routers = require('./mock/router/peoplemanage')
+const routers = require('./mock/router')
 
 let server = new WebpackDevServer(webpack(config), {
   // 设置 WebpackDevServer 的开发目录, 默认为当前项目的根目录
