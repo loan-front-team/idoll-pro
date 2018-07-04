@@ -5,7 +5,6 @@
  * @Last Modified time: 2018-05-10 21:22:42
 * 用于统一管理域名
 */
-import peopleManagement from './routers/peopleManagement'
 import User from './routers/user' // 第一步：导入
 // import _ from 'lodash'
 
@@ -16,7 +15,7 @@ const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
 // 判断当前是否处于生产环境
 const _PRD_ = (process.env.NODE_ENV || 'production') === 'production';
 
-const urlModules = [peopleManagement, User]; // 第二步：将导入模块引入
+const urlModules = [User]; // 第二步：将导入模块引入
 // console.log('urls', urls);
 
 
