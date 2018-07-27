@@ -34,7 +34,7 @@ function initHostname() {
 		// 用于生产环境
 		return {
 			domainName: ``,
-			suffix: '.do',
+			suffix: '',
 			// mock数据中间地址
 			mockAdd: '',
 			userUrl: '',

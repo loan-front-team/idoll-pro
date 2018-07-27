@@ -45,8 +45,11 @@ export default class BasicLayout extends React.Component {
     // console.log('match', this.props.match)
     let auth = getAuthority();
     console.log('auth', auth);
-    // 将授权信息存储到context中
-    this.setState({
+
+     // 将授权信息存储到context中
+    !auth ? this.setState({
+      redirectTo: '/login'
+    }) : this.setState({
       auth: auth
     })
   }

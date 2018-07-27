@@ -5,7 +5,7 @@
 1. src/api/routers/
 
 * 新建模块文件，如user.jsx
-* 将路由路径导出，该路径即为与后端约定的API接口，如 `export default {queryUserInfo: '/peopleManagement/userInfo',}`
+* 将路由路径导出，该路径即为与后端约定的API接口，如 `export default {queryUserInfo: '/userInfo',}`
 
 2. src/api/urls.jsx
 

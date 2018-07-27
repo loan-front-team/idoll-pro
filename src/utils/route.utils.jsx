@@ -9,13 +9,13 @@ function recursiveFiles(dir, options) {
 
     var files = fs.readdirSync(dir);
 
-    files.forEach((file)=> {
+    files.forEach((file) => {
         file = path.join(dir, file);
         var stats = fs.statSync(file);
         if (stats.isDirectory()) {
             _r = _r.concat(recursiveFiles(file, options))
         } else {
-            const ext = path.extname(file);//文件扩展名
+            const ext = path.extname(file);// 文件扩展名
             const hidden = path.basename(file)[0] === '.';
             const nonregular = !stats.isFile();
 
@@ -44,7 +44,7 @@ function buildRoutes(files) {
     return routes;
 }
 
-//递归生成路由表
+// 递归生成路由表
 function recursiveRoute(route, file, _path, root, level) {
     var _f;
     if (level == 3) {
@@ -67,9 +67,9 @@ function recursiveRoute(route, file, _path, root, level) {
         recursiveRoute(node['children'], file, _path, root, level);
     } else {
         if (root) {
-            node['component'] = "ASYNCLOAD:" + file + ":" + root;
+            node['component'] = 'ASYNCLOAD:' + file + ':' + root;
         } else {
-            node['component'] = "SYNCLOAD:" + file;
+            node['component'] = 'SYNCLOAD:' + file;
         }
     }
 }
@@ -80,11 +80,11 @@ exports.createRoutes = function (dir) {
     var files = recursiveFiles(dir, {ext: 'vue'});
     var routes = buildRoutes(files);
     var str = JSON.stringify(routes, null, 4);
-    //生成加载函数
+    // 生成加载函数
     str = str.replace(/"ASYNCLOAD:([\S\\]+):(\S+)"/g, "r => require.ensure([], () => r(require('./$1.vue')), '$2')");
     str = str.replace(/"SYNCLOAD:([\S\\]+)"/g, "require('./$1.vue')");
 
-    fs.writeFile(path.join(dir, './route.js'), "export default " + str);
+    fs.writeFile(path.join(dir, './route.js'), 'export default ' + str);
     // console.log("路由表信息已经生成完毕");
 }
 

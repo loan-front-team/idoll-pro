@@ -18,11 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
    // console.log(process.env);
  }
 
-
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('root'));
-
 const render = App => {
   ReactDOM.render((
     // <Provider store={store}>

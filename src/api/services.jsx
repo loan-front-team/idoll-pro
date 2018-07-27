@@ -1,11 +1,13 @@
 /*
-* @Author: lulu27753
-* @Date:   2018-04-16 15:00:30
+ * @Author: lulu27753
+ * @Date:   2018-04-16 15:00:30
  * @Last Modified by: mikey.zhaopeng
  * @Last Modified time: 2018-05-11 09:54:42
-*/
+ */
 import axios from 'axios'
-import { message } from 'components'
+import {
+  message
+} from 'components'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -25,72 +27,64 @@ const codeMessage = {
   504: '网关超时。'
 };
 
-function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    }
-    const errorMsg = codeMessage[response.code] || response.statusText;
-    message.warning(errorMsg, 2);
+const checkStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  const errorMsg = codeMessage[response.status] || response.statusText;
+  message.warning(errorMsg, 2);
 
-    const error = new Error(errorMsg);
-    error.name = response.status;
-    error.response = response;
-    throw error;
+  const error = new Error(errorMsg);
+  error.name = response.status;
+  error.response = response;
+  throw error;
 }
 
-function request(config, resolve, reject) {
-    const newConfig = { ...config };
-    if (newConfig.method === 'POST' || newConfig.method === 'PUT') {
-        if (!(newConfig.body instanceof FormData)) {
-            newConfig.headers = {
-                Accept: 'application/json',
-                'Content-Type': 'application/json; charset=utf-8',
-                ...newConfig.headers,
-            };
-            newConfig.body = JSON.stringify(newConfig.body);
-        } else {
-            newConfig.headers = {
-                Accept: 'application/json',
-                ...newConfig.headers,
-            };
-        }
-    }
+const request = (config, resolve, reject) => {
+  const newConfig = { ...config
+  };
+  newConfig.headers = {
+    Accept: 'application/json',
+    'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+    ...newConfig.headers,
+  };
 
-    axios.request(newConfig)
-        .then(checkStatus)
-        .then((response) => {
-            const data = response.data
-            if (data.resultCode === '000000') {
-                typeof resolve === 'function' && resolve(data.data)
-            } else {
-                message.success(data.resultMesg);
-                typeof reject === 'function' && reject(data.data);
-            }
-        }, (response) => {
-            typeof reject === 'function' && reject(response);
-        })
-        .catch((error) => {
-            typeof reject === 'function' && reject(error);
-        })
+  axios.request(newConfig)
+    .then(checkStatus)
+    .then((response) => {
+      const data = response.data
+      console.log('response', response);
+
+      if (data.resultCode === '000000') {
+        typeof resolve === 'function' && resolve(data.data)
+      } else {
+        message.success(data.resultMesg);
+        typeof reject === 'function' && reject(data.data);
+      }
+    }, (response) => {
+      typeof reject === 'function' && reject(response);
+    })
+    .catch((error) => {
+      typeof reject === 'function' && reject(error);
+    })
 }
 
 export default {
-    get: (url, params, resolve, reject) => {
-        request({
-            method: 'GET',
-            url,
-            params
-        }, resolve, reject)
-    },
-    post: (url, params, resolve, reject) => {
-        request({
-            method: 'POST',
-            url,
-            params
-        }, resolve, reject)
-    },
-    request: (config, resolve, reject) => {
-        request(config, resolve, reject)
-    }
+  get: (url, params, resolve, reject) => {
+    request({
+      method: 'GET',
+      url,
+      params
+    }, resolve, reject)
+  },
+  post: (url, data, resolve, reject) => {
+    request({
+      method: 'POST',
+      url,
+      data
+    }, resolve, reject)
+  },
+  request: (config, resolve, reject) => {
+    request(config, resolve, reject)
+  }
 }
-
