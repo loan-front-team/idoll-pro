@@ -1,5 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+
 
 import Alert from 'components/alert';
 import Checkbox from 'components/checkbox';
@@ -8,16 +10,17 @@ import Login from 'component/login';
 
 import Image from 'assets/images/logo.png';
 import { setAuthority, getAuthority } from 'utils/localStorageAuthority';
+import { login } from 'reduxes/user.redux'
 
-import services from 'api/services';
-import urls from 'api/urls';
+// import services from 'api/services';
+// import urls from 'api/urls';
 
 // import data from '../../data';
 import styles from './index.less';
 
 
 const { UserName, Password, Submit } = Login;
-export default class LoginPage extends React.Component {
+class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -35,7 +38,7 @@ export default class LoginPage extends React.Component {
 	}
 	authSuccess = ({userType, msg, um}) => {
 		// 如果登陆成功，则将登陆账号存入localStorage
-		if (um === 'guanguan' && !msg) {
+		if (um && !msg) {
 			// console.log('um', um)
 			setAuthority(um);
 			this.setState({
@@ -58,9 +61,14 @@ export default class LoginPage extends React.Component {
 		})
 	}
 	onSubmit = (err, values) => {
-		if (!err) {
-			services.get(urls.login, {um: values.username, pwd: values.password, autoLogin: this.state.autoLogin}, this.authSuccess)
-		}
+		// if (!err) {
+		// 	services.get(urls.login, {um: values.username, pwd: values.password, autoLogin: this.state.autoLogin}, this.authSuccess)
+		// }
+		console.log('onSubmit', values);
+		this.props.login({
+			user: values.username,
+			pwd: values.password,
+		})
 	}
 	changeAutoLogin = (e) => {
     this.setState({
@@ -74,6 +82,8 @@ export default class LoginPage extends React.Component {
     });
 	}
 	render() {
+		console.log('login', this.props);
+
 return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
   <div className={styles.loginpage}>
     <div className={styles.header}>
@@ -100,3 +110,20 @@ return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
 		);
 	}
 };
+function mapStateToProps(props) {
+	return {
+
+	}
+}
+function mapStateToDispatch(dispatch) {
+	return {
+		login: (user, pwd) => {
+			dispatch({ type: 'CHANGE_COLOR',
+payload: {
+			user,
+			pwd,
+			}})
+		}
+	}
+}
+export default connect(mapStateToProps, mapStateToDispatch)(LoginPage);
