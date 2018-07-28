@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 
 
@@ -9,14 +11,11 @@ import Layout from 'components/layout';
 import SiderMenu from 'component/sider-menu';
 import GlobalHeader from 'component/global-header';
 
+import { logout } from 'reduxes/user.redux'
 import data from '../../data';
 import logo from 'assets/images/logo.png';
 import { getMenuData } from './getMenuData';
-import { getAuthority, setAuthority } from 'utils/localStorageAuthority';
 import { getRedirect } from 'utils/getRedirect';
-
-import services from 'api/services';
-import urls from 'api/urls';
 
 import styles from './index.less';
 
@@ -30,28 +29,12 @@ const menus = getMenuData();
 // console.log('menus', menus);
 menus.forEach(getRedirect);
 
-export default class BasicLayout extends React.Component {
+class BasicLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       collapsed: false,
-      redirectTo: null,
-      auth: '',
     }
-  }
-
-  componentDidMount() {
-    // 从localstorerage里面获取授权
-    // console.log('match', this.props.match)
-    let auth = getAuthority();
-    console.log('auth', auth);
-
-     // 将授权信息存储到context中
-    !auth ? this.setState({
-      redirectTo: '/login'
-    }) : this.setState({
-      auth: auth
-    })
   }
   getPageTitle() {
     const { routerData, location } = this.props;
@@ -62,24 +45,14 @@ export default class BasicLayout extends React.Component {
     }
     return title;
   }
-  logoutSuccess = (data) => {
-    // console.log(data)
-    // 清除auth
-    setAuthority('')
-    this.setState({
-      redirectTo: '/login'
-    });
-  }
   handleQuit = () => {
-    // console.log('handleQuit', 'redirectTo: /login');
-    services.get(urls.logout, {um: this.state.auth}, this.logoutSuccess)
+    this.props.logout()
   }
   onCollapse = (collapsed) => {
     this.setState({
       collapsed
     });
   }
-
 	render() {
     const {
       currentUser,
@@ -122,10 +95,26 @@ export default class BasicLayout extends React.Component {
 
     return (
       <DocumentTitle title={this.getPageTitle()}>
-        {this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : layout }
+        {
+          this.props.redirectTo && this.props.redirectTo !== this.props.match.path
+          ? <Redirect to={
+            this.props.redirectTo
+          }
+          /> : layout }
       </DocumentTitle>
       )
 	}
 }
+function mapStateToProps(state) {
+  return {
+    redirectTo: state.user.redirectTo
+  }
+}
 
+function mapStateToDispatch(dispatch) {
+  return {
+    logout: bindActionCreators(logout, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapStateToDispatch)(BasicLayout);
 

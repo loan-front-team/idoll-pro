@@ -1,4 +1,3 @@
-// import { getRedirectPath } from '../util.jsx';
 import { services, urls } from 'api/index'
 
 // 定义常量
@@ -18,19 +17,28 @@ const initState = {
 
 // reducer
 export default function user(state = initState, action) {
-	console.log(`action.type: ${action.type}`);
 	if (action) {
 		switch (action.type) {
 			case AUTH_SUCCESS:
 				return {
-					userName: action.payload
+          ...state,
+          ...action.payload,
+          redirectTo: '/',
+          isAuth: true,
 				}
-			// case ERROR_MSG:
-
-			// case LOGOUT:
-
-			// default:
-			// 	return state;
+			case ERROR_MSG:
+        return {
+          ...state,
+          msg: action.msg
+        }
+			case LOGOUT:
+        return {
+          ...initState,
+          redirectTo: '/login',
+          isAuth: false,
+        }
+			default:
+				return state;
 		}
 	}
 	return state;
@@ -39,15 +47,11 @@ export default function user(state = initState, action) {
 // 定义action
 
 export function login({user, pwd}) {
-	console.log('====================================');
-	console.log('login');
-	console.log('====================================');
 	if (!user || !pwd) {
 		return errorMsg('必须输入账号密码')
 	}
 	// 发送异步消息
 	return dispatch => {
-		console.log(`logindispatch: ${dispatch}`); // @TODO SHANCHU
 		services.get(urls.login, { user, pwd }, data => {
 			// 数据成功传入后台
 			dispatch(authSuccess(data))
@@ -57,18 +61,28 @@ export function login({user, pwd}) {
 	}
 }
 
-
-export function logoutSubmit() {
-	return { type: LOGOUT }
+export function logout() {
+	return (dispatch) => {
+    services.get(urls.logout, {}, data => {
+      dispatch(logoutSuccess(data))
+    }, err => {
+      dispatch(errorMsg(err))
+    })
+  }
 }
 function authSuccess(obj) {
-	// 过滤掉pwd，只传入其他的data
-	const { pwd, ...data } = obj;
-	// console.log(data)
-	return { type: AUTH_SUCCESS, payload: data }
+	return {
+    type: AUTH_SUCCESS,
+    payload: obj,
+  }
 }
 function errorMsg(msg) {
 	return { type: ERROR_MSG, msg: msg }
+}
+function logoutSuccess(data) {
+  return {
+    type: LOGOUT
+  }
 }
 
 

@@ -53,7 +53,7 @@ const request = (config, resolve, reject) => {
     .then(checkStatus)
     .then((response) => {
       const data = response.data
-      console.log('response', response);
+      // console.log('response', response);
 
       if (data.resultCode === '000000') {
         typeof resolve === 'function' && resolve(data.data)
