@@ -2,11 +2,11 @@
 
 布局主要帮助我们快速搭建页面结构，划分区域，处理页面响应式。我们目前提供的页面布局是主要有页面的整体布局Layout和栅格系统布局Grid。
 
-### Dbox UI 的 Grid 组件
+### Idoll UI 的 Grid 组件
 
 目前提供的栅格系统是按照24等分原则进行划分的，采用的flex布局方法，你需要了解flex布局相关基础知识。
 
-### Dbox UI 的 Layout 组件
+### Idoll UI 的 Layout 组件
 
 Layout组件是用于页面整体布局的组件，提供Layout，Sider，Header，Content，Footer组件。
 
@@ -84,12 +84,12 @@ Layout作为容器组件，Sider，Header，Content，Footer使用时必须包�
 
 ## 样式
 
-* 如果你需要覆盖Dbox UI 下的组件样式，只要将覆盖值放到src同级别的`style/reset.less`中即可
-* 如果需要，你可以在样式文件的头部引入Dbox样式变量文件，这样可以很方便的获取Dbox UI 的样式变量并在你的文件里使用，有利于保持页面的一致性，也方便定制主题。`@import "style/themes/default/default.less"`
+* 如果你需要覆盖Idoll UI 下的组件样式，只要将覆盖值放到src同级别的`style/reset.less`中即可
+* 如果需要，你可以在样式文件的头部引入Idoll样式变量文件，这样可以很方便的获取Idoll UI 的样式变量并在你的文件里使用，有利于保持页面的一致性，也方便定制主题。`@import "style/themes/default/default.less"`
 
 ### less
 
-Dbox UI 和 Dbox Pro 默认使用less作为样式语言，
+Idoll UI 和 Idoll Pro 默认使用less作为样式语言，
 
 ### CSS Modules
 
@@ -198,7 +198,7 @@ ReactDOM.render(
 ```
 
 方法很简单，有两点需要注意：
-引入的 Dbox UI 组件类名没有被 CSS Modules 转化，所以被覆盖的类名 .idoll-select-selection 必须放到 :global 中。
+引入的 Idoll UI 组件类名没有被 CSS Modules 转化，所以被覆盖的类名 .idoll-select-selection 必须放到 :global 中。
 因为上一条的关系，覆盖是全局性的，为了防止对其他 Select 造成影响，可以给组件添加 className，只对这类组件进行覆盖，也可以利用外层类名实现这种限制。
 
 ## 和服务端进行交互
@@ -216,7 +216,7 @@ service中根据当前的NODE_ENV，配置不同的hostName，获取相应数据
 
 ## 引入外部模块
 
-除了 Dbox UI 组件以及脚手架内置的业务组件，有时我们还需要引入其他外部模块.
+除了 Idoll UI 组件以及脚手架内置的业务组件，有时我们还需要引入其他外部模块.
 
 ## 构建和发布
 

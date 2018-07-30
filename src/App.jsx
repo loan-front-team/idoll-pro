@@ -18,6 +18,7 @@ const App = () => (
         <Route exact path='/login' component={Login} />
         <BasicLayout>
           <Route exact path='/' component={User} />
+          <Route exact path='/dashboard' component={User} />
           <Route exact path='/dashboard/user-group' component={User} />
           <Route component={NotFound} />
         </BasicLayout>
