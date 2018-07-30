@@ -1,7 +1,7 @@
 @import '../../../style/theme/default/index';
 @import '../../../style/index';
 
-@switch-prefix-cls: ~"dbox-switch";
+@switch-prefix-cls: ~"idoll-switch";
 
 .@{switch-prefix-cls} {
   .reset-component;
@@ -52,8 +52,8 @@
 
   &:before {
     content: "1";//加载icon
-    font-family: dboxicon;
-    animation: dboxSwitchSmallLoadingCircle 1s infinite linear;
+    font-family: idollicon;
+    animation: idollSwitchSmallLoadingCircle 1s infinite linear;
     text-align: center;
     background: transprent;
     z-index: 1;
@@ -121,7 +121,7 @@
   }
 
   &-small&-loading:before {
-    animation: dboxSwitchSmallLoadingCircle 1s infinite linear;
+    animation: idollSwitchSmallLoadingCircle 1s infinite linear;
     font-weight: bold;
   }
 
@@ -152,7 +152,7 @@
   }
 }
 
-@keyframes dboxSwitchSmallLoadingCircle {
+@keyframes idollSwitchSmallLoadingCircle {
   0% {
     transform-origin: 50% 50%;
     transform: rotate(0deg) scale(0.66667);

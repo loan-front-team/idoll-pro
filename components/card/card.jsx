@@ -27,7 +27,7 @@ class Card extends Component {
         actions: PropTypes.node
     }
     static defaultProps = {
-        prefixCls: 'dbox-card',
+        prefixCls: 'idoll-card',
         className: ''
     }
     // 内容是否为Grid
@@ -69,7 +69,7 @@ class Card extends Component {
 
     render() {
         const {
-            prefixCls = 'dbox-card', className, extra, title, bordered = true, bodyStyle, tabList, loading,
+            prefixCls = 'idoll-card', className, extra, title, bordered = true, bodyStyle, tabList, loading,
             children, hoverable, cover, type, action, activeTabKey, defaultActiveTabKey, ...others
         } = this.props;
         const cardClassName = classNames(prefixCls, className, {
