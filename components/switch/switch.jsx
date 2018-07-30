@@ -38,7 +38,7 @@ export default class Switch extends Component {
   }
 
   static defaultProps = {
-    prefixCls: 'dbox-switch',
+    prefixCls: 'idoll-switch',
     checkedChildren: null,
     unCheckedChildren: null,
     className: '',
@@ -117,7 +117,7 @@ export default class Switch extends Component {
       checkedChildren, tabIndex, unCheckedChildren, size, ...restProps } = this.props;
     const checked = this.state.checked;
     const switchTabIndex = disabled ? -1 : (tabIndex || 0);
-    const switchClassName = classNames('dbox-switch', {
+    const switchClassName = classNames('idoll-switch', {
       [className]: !!className,
       [prefixCls]: true,
       [`${prefixCls}-checked`]: checked,

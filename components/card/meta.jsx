@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types';
 
 export default function Meta(props) {
-    const { prefixCls = 'dbox-card', avatar, title, description, ...others } = props;
+    const { prefixCls = 'idoll-card', avatar, title, description, ...others } = props;
     const MetaClassName = classNames(`${prefixCls}-meta`, classNames);
     const avatarDOM = avatar ? <div className={`${prefixCls}-meta-avatar`}>{avatar}</div> : null;
     const titleDOM = title ? <div className={`${prefixCls}-meta-title`}>{title}</div> : null;

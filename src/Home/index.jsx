@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 function Home() {
   	return (
     <div className='widget-list'>
-      <div className='header'><h1>Dbox UI</h1></div>
+      <div className='header'><h1>idoll UI</h1></div>
       <div className='widget-item'>
         <NavLink className='widget-wrap' to='/layout'>
           <div className='name'>布局</div>

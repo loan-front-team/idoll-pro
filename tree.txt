@@ -3,8 +3,8 @@
 ├── assets // 静态资源文件
 │   ├── fonts // 字体文件
 │   └── images // 图片文件
-├── components // Dbox UI
-├── dbox.html // build 部署时导出的html模板
+├── components // idoll UI
+├── idoll.html // build 部署时导出的html模板
 ├── doc // 给后端使用的文档及相关约定规范
 │   └── readme.md
 │   ├── interface
@@ -63,7 +63,7 @@
 │   ├── registerServiceWorker.js
 │   ├── router
 │   │   ├── router.jsx // 配置路由信息
-│   ├── templates // Dbox UI Demo 文件
+│   ├── templates // idoll UI Demo 文件
 │   └── utils // 项目工具函数
 ├── style // 样式
 │   ├── core
@@ -77,7 +77,7 @@
 │   ├── index.js
 │   ├── index.less
 │   ├── mixins
-│   ├── reset.less // 覆盖Dbox UI 的样式，可以统一写入到这个文件下面
+│   ├── reset.less // 覆盖idoll UI 的样式，可以统一写入到这个文件下面
 │   └── theme
 │       ├── colors // 色彩配置函数及模板生成
 │       └── default
