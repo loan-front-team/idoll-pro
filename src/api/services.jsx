@@ -4,7 +4,9 @@
  * @Last Modified by: mikey.zhaopeng
  * @Last Modified time: 2018-05-11 09:54:42
  */
-import axios from 'axios'
+import axios from 'axios';
+import qs from 'qs';
+
 import {
   message
 } from 'components'
@@ -26,7 +28,7 @@ const codeMessage = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。'
 };
-
+// let Authorization = '';
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -53,8 +55,6 @@ const request = (config, resolve, reject) => {
     .then(checkStatus)
     .then((response) => {
       const data = response.data
-      console.log('response', response);
-
       if (data.resultCode === '000000') {
         typeof resolve === 'function' && resolve(data.data)
       } else {
@@ -74,14 +74,19 @@ export default {
     request({
       method: 'GET',
       url,
+      withCredentials: true,
+      crossDomain: true,
       params
     }, resolve, reject)
   },
   post: (url, data, resolve, reject) => {
+    const qsData = qs.stringify(data)
     request({
       method: 'POST',
       url,
-      data
+      withCredentials: true,
+      crossDomain: true,
+      data: qsData,
     }, resolve, reject)
   },
   request: (config, resolve, reject) => {

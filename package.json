@@ -1,6 +1,6 @@
 {
   "name": "idoll-pro",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An out-of-box UI solution for enterprise applications",
   "main": "index.js",
   "scripts": {
