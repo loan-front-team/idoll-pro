@@ -77,7 +77,6 @@ export default class GlobalHeader extends PureComponent {
       onMenuClick,
       onQuit
     } = this.props;
-    console.log('leftChildren', leftChildren);
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key='userinfo' disabled>
@@ -124,7 +123,7 @@ export default class GlobalHeader extends PureComponent {
               )}
             { rightChildren ? <div className={styles.rightChildren}>{ rightChildren }</div> : <Input type='text'className={styles.search} placeholder='搜索...' />}
           </div>
-          <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} onClick={onQuit} />
+          <Button type='create' icon='logout' className={styles.quit} onClick={onQuit} />
         </div>
       </div>
     )
