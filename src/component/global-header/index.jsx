@@ -72,10 +72,12 @@ export default class GlobalHeader extends PureComponent {
       systemName,
       routerPath,
       leftChildren,
+      rightChildren,
       centerChildren,
       onMenuClick,
       onQuit
     } = this.props;
+    console.log('leftChildren', leftChildren);
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key='userinfo' disabled>
@@ -101,7 +103,9 @@ export default class GlobalHeader extends PureComponent {
               {routerPath}
             </span>
           </div>
-          {leftChildren || ''}
+          <div className={styles.leftChildren} >
+            {leftChildren || ''}
+          </div>
         </div>
         <div className={styles.t_floor_box_2}>
           {centerChildren || (<div className={styles.today}>{today}</div>)}
@@ -118,7 +122,7 @@ export default class GlobalHeader extends PureComponent {
             ) : (
               <Spin size='small' style={{ marginLeft: 8 }} />
               )}
-            {<Input type='text'className={styles.search} placeholder='搜索...' />}
+            { rightChildren ? <div className={styles.rightChildren}>{ rightChildren }</div> : <Input type='text'className={styles.search} placeholder='搜索...' />}
           </div>
           <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} onClick={onQuit} />
         </div>

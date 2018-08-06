@@ -205,7 +205,7 @@ ReactDOM.render(
 
 我们使用axios框架进行与后端的交互，同时对接口统一的管理。
 
-* service `api/services.jsx` 提供与后端交互的方法，根据统一的接口规范进行统一处理。[接口规范](http://git-ma.paic.com.cn/loan-cloud/code-guide/blob/master/interface-specification.md)
+* service `api/services.jsx` 提供与后端交互的方法，根据统一的接口规范进行统一处理。
 * urls `api/urls.jsx` 将所有接口按各自模块划分，最后通过urls.jsx对后端接口统一进行整合暴露给外部引用
 
 ### 不同模式下数据来源

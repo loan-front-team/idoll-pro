@@ -14,5 +14,7 @@ currentUser | 当前用户的信息 | object | -{name: 'jack'}
 systemName | 系统名称 | string | -
 routerPath | 当前路由名称 | string | -
 leftChildren | 双层结构下左下角dom元素 | node | -
+rightChildren | 双层结构下右下角dom元素 | node | -
 centerChildren | 中间dom元素,默认为当前日期信息 | node | -
-onMenuClick | 点击用户名下拉单选项时间 | function | 
+onMenuClick | 点击用户名下拉单选项时间 | function |
+onQuit | 退出 | function |
